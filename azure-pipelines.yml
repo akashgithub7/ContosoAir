@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 pool:
-  vmImage: 'ubuntu-16.04'
+  vmImage: 'Hosted 2017'
 
 trigger:
 - master
@@ -18,17 +18,12 @@ steps:
     Contents: '*.json'
     TargetFolder: '$(build.artifactstagingdirectory)/Templates'
 
-- task: Npm@1
-  inputs:
-    command: 'install'
-
 - task: Npm@0
   displayName: 'npm custom'
   inputs:
     command: custom
     verbose: false
     customCommand: 'install --production'
-
 
 - task: ArchiveFiles@2
   displayName: 'Archive $(Build.SourcesDirectory)'
